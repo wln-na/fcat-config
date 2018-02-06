@@ -1,0 +1,83 @@
+spring:
+
+    datasource:
+
+        url: jdbc:mysql://localhost:3306/fcat?useUnicode=true&characterEncoding=UTF8
+
+        username: root
+
+        password: root
+
+        driver-class-name: com.mysql.jdbc.Driver
+
+
+#Redis cache 过期时间设置
+
+redis:
+
+  cache:
+
+    expiration: 3600
+
+    
+server:
+
+    port: 8964
+
+
+mybatis:
+
+    basepackage: com.xfdmao.fcat.user.mapper
+
+    xmlLocation: classpath:mapper/**/*.xml
+
+
+eureka:
+
+    client:
+
+        serviceUrl:
+
+            defaultZone: http://127.0.0.1:8961/eureka/
+
+
+hystrix:
+
+  command:
+
+    default:
+
+      execution:
+
+        isolation:
+
+          thread:
+
+            timeoutInMilliseconds: 30000 #缺省为1000
+
+
+
+logging:
+
+    level:
+
+        tk.mybatis: DEBUG
+
+        com.xfdmao.fcat.user: DEBUG
+
+    config: classpath:logback.xml
+
+    path: /fcat/user
+
+
+swagger:
+
+    basepackage: com.xfdmao.fcat.user.controller
+
+    service:
+
+        name: fcat-user
+
+        description: fcat-user后端服务接口
+
+        developer: fier
