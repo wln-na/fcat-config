@@ -1,0 +1,53 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+        
+server:
+    port: 8965
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  routes:
+    fcat-user:
+      path: /fcat-user/**
+      serviceId: fcat-user
+      stripPrefix: true
+      sensitiveHeaders:
+    fcat-auth:
+      path: /fcat-auth/**
+      serviceId: fcat-auth
+      stripPrefix: true
+      sensitiveHeaders: 
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://127.0.0.1:8961/eureka/
+
+security:
+  sessions: stateless
+  oauth2:
+    resource:
+      loadBalanced: true
+      user-info-uri: http://fcat-auth/user
+      prefer-token-info: false
+      service-id: fcat-gate
+      
+logging:
+    level:
+        com.xfdmao.fcat.gate: DEBUG
+    config: classpath:logback.xml
+    path: /fcat/gate
+ 
+ 
