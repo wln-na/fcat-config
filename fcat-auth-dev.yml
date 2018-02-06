@@ -1,0 +1,28 @@
+server:
+
+  port: 8966
+
+
+fcat:
+
+  auth:
+
+    clientId: fcat
+
+    clientSecret: fcatSecret
+
+    scope: server
+
+        
+
+logging:
+
+    level:
+
+        com.xfdmao.fcat.auth: DEBUG
+
+        com.xfdmao.fcat.api: DEBUG
+
+    config: classpath:logback.xml
+
+    path: /fcat/auth
